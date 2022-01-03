@@ -1,26 +1,23 @@
 import { NextFunction, Request, Response } from 'express';
-
-import { Settings } from './Types/Settings';
+import manyChat from './ManyChat';
+import { Settings, ManyChatInterface } from './Types';
 
 export * from './Types';
 
 declare global {
   namespace Express {
     interface Request {
-      // Additional Request enhancements go in here
-      // template: TemplateInterface;
+      manyChat: ManyChatInterface;
     }
   }
 }
 
-export default (additionalSettings?: Settings) => (req: Request, res: Response, next: NextFunction) => {
-  // Set any default settings and append additional settings
+export default (additionalSettings: Settings) => (req: Request, res: Response, next: NextFunction) => {
   const settings: Settings = {
     ...additionalSettings
   }
 
-  // Define the object that is set as a Request enhancement
-  // req.template = TemplateObject;
+  req.manyChat = manyChat(settings);
 
   next();
 };
