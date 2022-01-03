@@ -1,17 +1,7 @@
-import axios, { AxiosPromise } from "axios";
-import { Settings } from "../Types";
+import axios from "axios";
+import { ApiCallMethod, ErrorData, ResponsePromise, Settings, SuccessData } from "../Types";
 
-type SuccessData<R> = {
-  success: true;
-  data: R;
-};
-
-type ErrorData = {
-  success: false;
-  message: string;
-}
-
-const apiCall = (settings: Settings) => <D = any, R = any>(uri: string, data: D): Promise<SuccessData<R> | ErrorData> => {
+const apiCall = (settings: Settings): ApiCallMethod => <D = any, R = any>(uri: string, data: D): ResponsePromise<R> => {
   return axios({
     method: 'post',
     url: `https://api.manychat.com/${uri}`,
