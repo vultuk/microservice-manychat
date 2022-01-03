@@ -1,5 +1,5 @@
 {
-  "name": "@vultuk/microservice-middleware-template",
+  "name": "@vultuk/microservice-manychat",
   "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
@@ -9,10 +9,10 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json --passWithNoTests",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint",
+    "preversion": "yarn lint",
+    "version": "yarn format && git add -A src",
     "postversion": "git push && git push --tags"
   },
   "keywords": [],
